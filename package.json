@@ -1,0 +1,29 @@
+{
+  "name": "socketcrawler",
+  "version": "1.0.0",
+  "description": "Websocket server for crawlers",
+  "main": "ws_server.js",
+  "dependencies": {
+    "regex-occurrence": "^1.0.0",
+    "ws": "^6.1.2",
+    "puppeteer":"^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/naifmeh/socketCrawler.git"
+  },
+  "keywords": [
+    "crawler",
+    "websockets"
+  ],
+  "author": "Naif Mehanna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naifmeh/socketCrawler/issues"
+  },
+  "homepage": "https://github.com/naifmeh/socketCrawler#readme"
+}
