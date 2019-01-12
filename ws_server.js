@@ -1,21 +1,18 @@
-module.paths.push('C:\\Users\\User\\AppData\\Roaming\\npm\\node_modules\\')
 const ws = require('ws');
 
-
 async function launchCrawler(config, debug=false) {
-    let user_agent = config.useragent;
-    let url = config.url;
+    let user_agent = config._useragent;
+    let url = config._url;
     let viewportType = "desktop";
-    let loadPictures = config.loadpictures;
-    let runCss = config.runcss;
-    let plugins = config.plugins;
-    let webdriver = config.webdriver;
+    let loadPictures = config._loadpictures;
+    let runCss = config._runcss;
+    let plugins = config._plugins;
+    let webdriver = config._webdriver;
     let action='screenshot';
 
     const puppeteer = require('puppeteer');
     const regexOccurence = require('regex-occurrence');
 
-    let timeout;
     let sigint_cntr = 0;
     let siginthandler = () => {
         sigint_cntr++;
@@ -102,11 +99,7 @@ async function launchCrawler(config, debug=false) {
         if(!regexOccurence(url, /http[s]*:\/\/.+/gm))
             link = 'http://'+url;
 
-        timeout = setTimeout(()=> {
-            (async() => {
-                throw new Error("Error with browser instance");
-            })();
-        }, 50000);
+
         page.on('unhandledRejection', () => {
             throw new Error('Unhandled rejection inside of browser');
         });
@@ -147,7 +140,6 @@ async function launchCrawler(config, debug=false) {
         propertyObject.responseCode = status;
 
         await browser.close();
-        clearTimeout(timeout);
         return Promise.resolve(propertyObject);
     }catch(err) {
         console.error(err);
@@ -167,6 +159,7 @@ const wss = new ws.Server({port:8081});
 
 wss.on('connection', ws=> {
     ws.on('message', message => {
+        console.log(message);
         let config = JSON.parse(message);
         (async () => {
             try {

@@ -4,9 +4,9 @@
   "description": "Websocket server for crawlers",
   "main": "ws_server.js",
   "dependencies": {
+    "puppeteer": "^1.11.0",
     "regex-occurrence": "^1.0.0",
-    "ws": "^6.1.2",
-    "puppeteer":"^1.10.0"
+    "ws": "^6.1.2"
   },
   "devDependencies": {},
   "scripts": {
