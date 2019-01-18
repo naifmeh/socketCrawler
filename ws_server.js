@@ -38,6 +38,7 @@ async function launchCrawler(config, debug=false) {
             properties.headless = true;
         }
         properties.args.push('--disable-notifications');
+        properties.args.push('--no-sandbox')
         properties.headless = false;
         const browser = await puppeteer.launch(properties);
         const page = await browser.newPage();
@@ -155,7 +156,7 @@ async function launchCrawler(config, debug=false) {
 
 
 }
-const wss = new ws.Server({port:8081});
+const wss = new ws.Server({port:80});
 
 wss.on('connection', ws=> {
     ws.on('message', message => {
