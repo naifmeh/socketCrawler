@@ -30,16 +30,14 @@ async function launchCrawler(config, debug=false) {
 
     const fs = require('fs');
     try {
-
-
         let properties = {};
         properties.args = [];
         if(debug) {
-            properties.headless = true;
+            properties.headless = false;
         }
         properties.args.push('--disable-notifications');
-        properties.args.push('--no-sandbox')
-        properties.headless = false;
+        properties.args.push('--no-sandbox');
+
         const browser = await puppeteer.launch(properties);
         const page = await browser.newPage();
         if(user_agent !== undefined) {
